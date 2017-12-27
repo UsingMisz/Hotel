@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="5dp"
+    >
+
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/liner_text"
+    >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="目的地"
+                android:textColor="@color/grey"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/dest_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="广东东软学院附近"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/dest_road_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="广东省佛山市南海区鸿基路"
+                android:textColor="@color/grey"
+                android:textSize="14sp" />
+</LinearLayout>
+
+    <ImageView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/ic_launcher_round"
+        android:layout_alignParentRight="true"
+        />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        android:layout_below="@id/location"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="75dp"
+        android:id="@+id/line1"
+        />
+
+ <LinearLayout
+     android:background="@color/white"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="horizontal"
+     android:layout_marginTop="15dp"
+     android:id="@+id/line2"
+     android:layout_below="@+id/line1"
+     android:layout_alignParentStart="true">
+
+     <LinearLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:background="@color/white"
+         android:orientation="vertical"
+         >
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:background="@color/white"
+         android:text="入住"/>
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="10dp"
+             android:text="1月14日"
+             android:background="@color/white"
+             android:textColor="@color/black"
+             android:textSize="30sp" />
+     </LinearLayout>
+
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="今天"
+         android:background="@color/white"
+         android:layout_gravity="bottom"
+         android:layout_marginLeft="7dp"
+         />
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text=">"
+         android:background="@color/white"
+         android:layout_gravity="bottom"
+         android:textSize="17sp"
+         android:layout_marginLeft="10dp"/>
+
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="1晚"
+         android:background="@color/white"
+         android:textSize="17sp"
+         android:layout_gravity="bottom"
+         android:layout_marginLeft="10dp"/>
+     <LinearLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:background="@color/white"
+         android:orientation="vertical">
+     <TextView
+         android:layout_width="wrap_content"
+         android:background="@color/white"
+         android:layout_height="wrap_content"
+         android:text="商店"
+         />
+
+         <TextView
+             android:id="@+id/date_tommorrow_text"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="1月15号"
+             android:background="@color/white"
+             android:textColor="@color/black"
+             android:textSize="30sp" />
+
+     </LinearLayout>
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="周日"
+         android:background="@color/white"
+         android:layout_gravity="bottom"
+         android:layout_marginLeft="10dp"/>
+ </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        android:layout_below="@id/line2"
+        android:layout_marginRight="15dp"
+        android:id="@+id/line3"
+
+        />
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="关键字/位置/品牌/酒店名"
+       android:textSize="25sp"
+       android:background="@color/white"
+       android:textColor="@color/grey"
+       android:id="@+id/guanjianzi_text"
+       android:layout_below="@+id/line2" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        android:layout_below="@id/guanjianzi_text"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/line4"
+        />
+
+         <TextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="价格/星级"
+             android:background="@color/white"
+             android:id="@+id/price_text"
+             android:textSize="26sp"
+             android:textColor="@color/grey"
+             android:layout_below="@+id/guanjianzi_text"
+             android:layout_alignParentStart="true" />
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        android:layout_below="@id/price_text"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/line5"
+        />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="搜索"
+        android:textColor="@color/white"
+        android:layout_below="@id/line5"
+        android:layout_marginTop="20dp"
+        android:background="@color/ju"
+        android:id="@+id/search_button"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dingdan_button"
+        android:layout_marginTop="20dp"
+        android:text="我的订单"
+        android:textColor="@color/black"
+        android:layout_below="@id/search_button"
+        android:background="@color/white"
+        android:layout_marginRight="60dp"
+
+        />
+</RelativeLayout>

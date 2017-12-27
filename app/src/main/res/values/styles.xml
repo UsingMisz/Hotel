@@ -1,0 +1,19 @@
+<resources>
+
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light" />
+
+
+
+    <style name="BaseAppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+       <style name="PaidTextColor">
+           <item name="android:textColor">@color/white</item>
+           <item name="android:background">@color/colorPrimary</item>
+       </style>
+    <color name="shadow_grey">#F2F2F2</color>
+</resources>

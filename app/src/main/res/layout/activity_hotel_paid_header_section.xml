@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:paddingLeft="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="商务房"
+            android:textSize="30sp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            />
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="30dp"
+             android:textColor="@color/white"
+             android:textSize="20sp"
+             android:background="@color/colorPrimary"
+             android:text="入住:01-14  离店:01-15     共一晚"
+             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="床型:大床   早餐:无"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorPrimary"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        >
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textSize="14sp"
+             android:layout_marginLeft="10dp"
+             android:textColor="@color/black"
+             android:layout_marginTop="15dp"
+             android:background="@color/white"
+             android:text="订单不可取消,入行程不确定建议购买取消险"/>
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="14sp"
+              android:layout_marginLeft="10dp"
+              android:textColor="@color/black"
+              android:layout_marginTop="15dp"
+              android:background="@color/white"
+              android:layout_marginBottom="17dp"
+              android:text="提前支付房费,到酒店免付房费办理入住"/>
+    </LinearLayout>
+
+</LinearLayout>

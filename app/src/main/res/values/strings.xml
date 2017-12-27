@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Hotel</string>
+    <string name="section_three_ago">三个月前</string>
+    <string name="section_three_later">三个月内</string>
+    <string-array name="sections">
+        <item>@string/section_three_ago</item>
+        <item>@string/section_three_later</item>
+
+    </string-array>
+</resources>

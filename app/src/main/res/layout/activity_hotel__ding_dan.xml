@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="main.zzy.com.hotel.Hotel_DingDanActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/mToolbar"
+            android:background="@color/white">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="酒店订单"
+                android:background="@color/white"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                />
+        </android.support.v7.widget.Toolbar>
+    </RelativeLayout>
+
+
+    <com.flyco.tablayout.SlidingTabLayout
+
+        android:id="@+id/sliding_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:tl_indicator_color="@color/pager"
+        app:tl_textSelectColor="@color/pager"
+        app:tl_textUnselectColor="@color/black"
+        app:tl_underline_color="@color/pager"
+        android:background="@color/white"
+        app:tl_indicator_corner_radius="1dp"
+        app:tl_indicator_height="2dp"
+        app:tl_indicator_width="40dp"
+        app:tl_tab_space_equal="true" />
+
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey"
+        android:overScrollMode="never" />
+</LinearLayout>
