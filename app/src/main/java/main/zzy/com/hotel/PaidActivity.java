@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import main.zzy.com.hotel.adapter.section.Hotel_Paid_Section;
@@ -20,6 +22,8 @@ import main.zzy.com.hotel.wiget.sectioned.SectionedRecyclerViewAdapter;
  */
 
 public class PaidActivity extends RxBaseActivity {
+    @BindView(R.id.toolbar_title)
+    TextView toolbar_title;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.paid_recycler)
@@ -50,8 +54,16 @@ public class PaidActivity extends RxBaseActivity {
      */
     @Override
     public void initToolBar() {
-
-
+         toolbar.setTitle("");
+        toolbar_title.setText("休闲酒店");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

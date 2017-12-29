@@ -1,11 +1,19 @@
 package main.zzy.com.hotel;
 
+import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+
+import java.util.zip.Inflater;
 
 import butterknife.BindView;
 
@@ -48,8 +56,37 @@ public class HotelContentActivity extends RxBaseActivity {
      */
     @Override
     public void initToolBar() {
-
+         mToobar.setTitle("");
         setSupportActionBar(mToobar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mToobar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.clear();
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.id_action_shoucang:
+            //收藏
+
+                break;
+            case R.id.id_action_share:
+              //分享
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -58,18 +95,7 @@ public class HotelContentActivity extends RxBaseActivity {
         mSectionedRecyclerViewAdapter = new SectionedRecyclerViewAdapter();
           LinearLayoutManager manager=new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(manager);
-       /* GridLayoutManager mGridLayoutManager = new GridLayoutManager(this, 3);
-        mGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                switch (mSectionedRecyclerViewAdapter.getSectionItemViewType(position)) {
-                    case SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER:
-                        return 3;
-                    default:
-                        return 1;
-                }
-            }
-        });*/
+
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setNestedScrollingEnabled(true);
         //mRecyclerView.setLayoutManager(mGridLayoutManager);

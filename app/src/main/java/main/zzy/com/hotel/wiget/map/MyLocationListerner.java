@@ -51,6 +51,7 @@ public class MyLocationListerner extends BDAbstractLocationListener {
         List<Poi>poiList=location.getPoiList();
         locationInfo.setPoiList(poiList);
         //
+
        EventBus.getDefault().post(new MessageLocationEvent(locationInfo));
 
     }

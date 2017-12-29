@@ -3,6 +3,7 @@ package main.zzy.com.hotel;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
@@ -78,7 +79,6 @@ public class MapActivity extends RxBaseActivity {
     MapView mMapView = null;
     MapStatus mMapStatus;MapStatusUpdate mMapStatusUpdate;
     Marker coverMarker;
-    List<Map<String, String>> coverArray = new ArrayList<Map<String, String>>();
 
 
     /**
@@ -143,32 +143,12 @@ public class MapActivity extends RxBaseActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    if (suggList!=null){
-                        addMarks();
-                    }
-            }
 
-            private void addMarks() {
-
-                double[][] coordinates = new double[coverArray.size()][2];
-                for (int i = 0; i < coverArray.size(); i++) {
-                    coordinates[i][0] = Double.parseDouble(coverArray.get(i).get("longitude"));
-                    coordinates[i][1] = Double.parseDouble(coverArray.get(i).get("latitude"));
-                }
-                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View view = inflater.inflate(R.layout.marker, null);
-                TextView hotel_name = (TextView) view.findViewById(R.id.hotel_name);
-
-                for (int j = 0; j <suggList.size(); j++) {
-                    //LatLng lla = new LatLng(coordinates[j][1], coordinates[j][0]);
-                    hotel_name.setText(suggList.get(j).getInfo());
-                    BitmapDescriptor bd1 = BitmapDescriptorFactory.fromBitmap(getBitmapFromView(view));
-                    MarkerOptions ooA = new MarkerOptions().position(suggList.get(j).getPt()).icon(bd1).zIndex(9).draggable(true).title(coverArray.get(j).get("coverid"));
-                    coverMarker = (Marker) mBaiduMap.addOverlay(ooA);
-                }
 
 
             }
+
+
 
             @Override
             public void afterTextChanged(Editable editable)
@@ -181,6 +161,7 @@ public class MapActivity extends RxBaseActivity {
                    }catch (Exception e){
 
                    }
+
             }
         });
 
@@ -236,17 +217,30 @@ public class MapActivity extends RxBaseActivity {
 
                     Log.e("onGetSuggestionResult", info.key + " " + info.city + info.district);
                     infos.setPt(info.pt);
+                    infos.setInfo(info.key );
                     //在地图上标注并绘制出来
                     suggList.add(infos);
 
                 }
-
+                addMarks();
             }
             //获取在线建议检索结果
         }
     };
 
+    private void addMarks() {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.marker, null);
+        TextView hotel_name = (TextView) view.findViewById(R.id.hotel_name);
+        for (int j = 0; j <suggList.size(); j++) {
+            hotel_name.setText(suggList.get(j).getInfo());
+            BitmapDescriptor bd1 = BitmapDescriptorFactory.fromBitmap(getBitmapFromView(view));
+            MarkerOptions ooA = new MarkerOptions().position(suggList.get(j).getPt()).icon(bd1).zIndex(9).draggable(true);
+            coverMarker = (Marker) mBaiduMap.addOverlay(ooA);
+        }
 
+
+    }
 
 
     /**
@@ -290,15 +284,24 @@ public class MapActivity extends RxBaseActivity {
         // 开启定位图层
         mBaiduMap.setMyLocationEnabled(true);
 // 构造定位数据
-        MyLocationData locData = new MyLocationData.Builder()
-                .accuracy(locationInfo.getRadius())
-                // 此处设置开发者获取到的方向信息，顺时针0-360
-                .direction(100).latitude(locationInfo.getLatitude())
-                .longitude(locationInfo.getLongitude()).build();
+
+        if (locationInfo.getCity()==null) {
+            locationInfo.setCity("北京");
+            locationInfo.setLongitude(116.380338);
+            locationInfo.setLatitude(39.92235);
+            Toast.makeText(this,"无法获得当前位置",Toast.LENGTH_SHORT).show();
+        }
+            MyLocationData locData = new MyLocationData.Builder()
+                    .accuracy(locationInfo.getRadius())
+                    // 此处设置开发者获取到的方向信息，顺时针0-360
+                    .direction(100).latitude(locationInfo.getLatitude())
+                    .longitude(locationInfo.getLongitude()).build();
+
         //缩放
         MapStatusUpdate mapStatusUpdate = MapStatusUpdateFactory.zoomBy(4);
         mBaiduMap.animateMapStatus(mapStatusUpdate);
 // 设置定位数据
+
         mBaiduMap.setMyLocationData(locData);
         //设置定位的图标还有一些信息
         mBaiduMap.setMyLocationConfiguration(new MyLocationConfiguration(

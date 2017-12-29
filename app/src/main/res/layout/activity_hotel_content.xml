@@ -11,7 +11,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/mToobar"
-        android:background="@color/colorAccent"/>
+        android:background="@color/colorAccent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="佛山休闲酒店"
+                android:layout_gravity="center"
+                android:textColor="@color/white"/>
+            </LinearLayout>
+            
+        </LinearLayout>
+        </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -5,12 +5,16 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
@@ -63,11 +67,39 @@ public class MainActivity extends RxBaseActivity {
     @Override
     public void initViews(Bundle savedInstanceState) {
         EventBus.getDefault().register(this);
+      initQuanXian();
         initRecyclerView();
-        initLocation();
+       // initLocation();
         initBannerView();
-
+        
     }
+    List<String> permissionList = new ArrayList<>();
+    private void initQuanXian() {
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        }
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_PHONE_STATE)
+                != PackageManager.PERMISSION_GRANTED) {
+            permissionList.add(Manifest.permission.READ_PHONE_STATE);
+        }
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+
+        if (!permissionList.isEmpty()) {
+            String[] permissions = permissionList.toArray(new String[permissionList.size()]);
+            ActivityCompat.requestPermissions(MainActivity.this, permissions, 1);
+        } else {
+            requestLocation();
+        }
+    }
+
+    private void requestLocation() {
+        initLocation();
+    }
+
 
     @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
     public void onMessage(MessageLocationEvent event) {
@@ -83,7 +115,7 @@ public class MainActivity extends RxBaseActivity {
             BannerEntity entity = new BannerEntity(Constants.BINNER_VALUE);
             list.add(entity);
         }
-        //分层加载adapter 多层Recyclerview嵌套 这里有点秀
+        //分层加载adapter 多层Recyclerview嵌套 s
         mSectionedRecyclerViewAdapter.addSection(new MainActivity_Home_Section(list));
     }
 
@@ -124,5 +156,27 @@ public class MainActivity extends RxBaseActivity {
         mRecyclerView.setNestedScrollingEnabled(true);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mSectionedRecyclerViewAdapter);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 1:
+                if (grantResults.length > 0) {
+                    for (int result : grantResults) {
+                        if (result != PackageManager.PERMISSION_GRANTED) {
+                            Toast.makeText(this, "必须同意所有权限才能够使用本程序", Toast.LENGTH_SHORT).show();
+                          //  finish();
+                            return;
+                        }
+                    }
+                    requestLocation();
+                } else {
+                    Toast.makeText(this, "发生未知错误", Toast.LENGTH_SHORT).show();
+                   // finish();
+                }
+                break;
+            default:
+        }
     }
 }
